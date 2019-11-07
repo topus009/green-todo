@@ -1,0 +1,16 @@
+$static-path: null
+$font-path: null
+
+@if $env == dev
+  $static-path: ''
+  $font-path: '/fonts/'
+@else
+  $static-path: '/public'
+  $font-path: '/public/fonts/'
+
+$images_path: '#{$static-path}/images/'
+
+// ================ COLORS ================
+$green-100: #00be73;
+$violet-100: #5f19aa;
+// ========================================

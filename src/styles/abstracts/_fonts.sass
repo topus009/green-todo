@@ -1,0 +1,11 @@
+=font-face($name,$src)
+  @font-face
+    font-family: $name
+    font-style: normal
+    src: url('#{$font-path}#{$src}.eot') format('eot'),
+    url('#{$font-path}#{$src}.woff') format('woff'),
+    url('#{$font-path}#{$src}.woff2') format('woff2'),
+    url('#{$font-path}#{$src}.ttf') format('truetype'),
+    url('#{$font-path}#{$src}.otf') format('opentype')
+
++font-face('PFDinDP-Reg','PFDinDisplayPro-Reg')

@@ -1,0 +1,31 @@
+.loader
+    display: flex
+    align-items: center
+    justify-content: center
+    @media screen and (max-width: #{1366 - 1}px)
+        height: calc(100vh - 60px)
+    @media screen and (min-width: 1366px) and (max-width: #{1920 - 1}px)
+        height: calc(100vh - 80px)
+    @media screen and (min-width: 1920px)
+        height: calc(100vh - 100px)
+.circle
+    float: left
+    margin-left: 12px
+    background-color: $violet-100
+    +wh(24px, 24px)
+    animation-name: bounce_circle
+    animation-duration: .6775s
+    animation-iteration-count: infinite
+    animation-direction: normal
+    border-radius: 50%
+    &.c_1
+        animation-delay: .1s
+    &.c_2
+        animation-delay: .2s
+    &.c_3
+        animation-delay: .3s
+
+@keyframes bounce_circle
+    50%
+        background-color: $green-100
+
