@@ -1,8 +1,9 @@
 import axio from 'axios';
 import { dbPrefix } from '../config/constants';
 import constants from '../constants/App';
+import FAKEDATA from '../../FAKE_DATA';
 
-const { GETUSERS, GETTODOSERROR, PENDING } = constants;
+const { GETTODOS, GETTODOSERROR, PENDING, CHANGETODOTITLE } = constants;
 
 const axios = axio.create({
   baseURL: dbPrefix,
@@ -11,22 +12,28 @@ const axios = axio.create({
 export function getTodos() {
   return dispatch => {
     dispatch({ type: PENDING });
-    return axios
-      .get('/Activities')
-      .then(({ data }) => {
-        dispatch({
-          type: GETUSERS,
-          payload: data,
-        });
-      })
-      .catch(err => {
-        console.error({ err });
-        return dispatch({ type: GETTODOSERROR });
-      });
+    dispatch({
+      type: GETTODOS,
+      payload: FAKEDATA,
+    });
+    //   return axios
+    //     .get('/Activities')
+    //     .then(({ data }) => {
+    //       dispatch({
+    //         type: GETTODOS,
+    //         payload: data,
+    //       });
+    //     })
+    //     .catch(err => {
+    //       console.error({ err });
+    //       return dispatch({ type: GETTODOSERROR });
+    //     });
   };
 }
-// export function clearFields() {
-//   return {
-//     type: CLEARFIELDS,
-//   };
-// }
+
+export function changeTodoTitle(payload) {
+  return {
+    type: CHANGETODOTITLE,
+    payload,
+  };
+}

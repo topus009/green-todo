@@ -6,8 +6,8 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 // const BrowserSyncPlugin = require('browser-sync-webpack-plugin')
 
 const common = require('./webpack.common');
-const HOST = process.env.HOST;
-const PORT = process.env.PORT;
+
+const { HOST, PORT } = process.env;
 // const PROXY = `http://${HOST}:${PORT}`;
 
 const STATIC = resolve(
@@ -49,7 +49,9 @@ module.exports = () => {
         filename: 'css/styles.css',
       }),
       new webpack.HotModuleReplacementPlugin(),
-      new webpack.DefinePlugin({ PRODUCTION: false }),
+      new webpack.DefinePlugin({
+        PRODUCTION: false,
+      }),
       // new BrowserSyncPlugin({
       //   host: HOST,
       //   port: PORT,

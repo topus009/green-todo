@@ -9,6 +9,7 @@ const Todos = lazy(() => import('../pages/Todos'));
 const Auth = lazy(() => import('../pages/Auth'));
 
 const history = createBrowserHistory();
+history.push('/todos');
 
 const AppRouter = () => (
   <Router history={history}>
