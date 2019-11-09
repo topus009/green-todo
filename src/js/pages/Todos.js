@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
-import { getTodos } from '../actions/AppActions';
+import { getTodos, changeTodoTitle } from '../actions/AppActions';
 import Todo from '../components/Todo';
 import THeadCellWithSoring from '../common/THeadCellWithSoring';
 import renderChildrenWithProps from '../hoc/renderChildrenWithProps';
@@ -22,10 +22,11 @@ const sortingRules = {
 
 const defaultSortOrder = 'desc';
 
-const Todos = ({ getTodos, todos, loading }) => {
+const Todos = ({ todos, loading, getTodos, changeTodoTitle }) => {
   const [selectedItems, setSelectedItems] = useState([]);
   const [selectedAll, setSelectedAll] = useState(false);
   const [sortBy, sortOrder, handleSort] = useSorting(null, defaultSortOrder);
+  const [editingId, setEditingId] = useState(1);
 
   const sortingProps = {
     sortBy,
@@ -63,6 +64,8 @@ const Todos = ({ getTodos, todos, loading }) => {
     }
   };
 
+  const handleSetEditing = (id = null) => setEditingId(id);
+
   const sortedTodos = sortIds(todosIds, todos, sortBy, sortOrder, sortingRules);
 
   return (
@@ -87,7 +90,17 @@ const Todos = ({ getTodos, todos, loading }) => {
         {!loading && sortedTodos.length
           ? sortedTodos.map(key => {
               const item = todos[key];
-              return <Todo key={item.ID} item={item} onSelect={handleSelectItem} checked={isSelected(item.ID)} />;
+              return (
+                <Todo
+                  key={item.ID}
+                  item={item}
+                  onSelect={handleSelectItem}
+                  checked={isSelected(item.ID)}
+                  handleChange={changeTodoTitle}
+                  setEditingId={handleSetEditing}
+                  isEditing={editingId === item.ID}
+                />
+              );
             })
           : null}
       </tbody>
@@ -106,6 +119,7 @@ const mapStateToProps = ({ app }) => {
 const mapDispatchToProps = dispatch => {
   return {
     getTodos: () => dispatch(getTodos()),
+    changeTodoTitle: params => dispatch(changeTodoTitle(params)),
   };
 };
 

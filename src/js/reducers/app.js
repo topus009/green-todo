@@ -32,9 +32,9 @@ export default function app(state = initialState, action) {
       ...state,
       todos: {
         ...todos,
-        [payload.id]: {
-          ...todos[payload.id],
-          Title: payload.title,
+        [payload.ID]: {
+          ...todos[payload.ID],
+          Title: payload.value,
         },
       },
     };
