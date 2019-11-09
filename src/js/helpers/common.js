@@ -1,5 +1,7 @@
 import moment from 'moment';
 
+export const convertArrayToString = arr => arr.map(val => `${val}`);
+
 export const getNumberFromString = val => Number(val);
 export const getBinaryFromString = val =>
   Number(

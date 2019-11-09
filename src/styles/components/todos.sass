@@ -3,10 +3,25 @@
   border-spacing: 10px 0
   color: white
   .todo
+    &.checked
+      background-color: #003f55
     &:hover
       background-color: #505050
+      &.checked
+        background-color: #004b66
     &_status
       cursor: pointer
       color: red
       &.completed
         color: green
+    &_header
+      &_status
+        display: flex
+        button
+          margin-left: 10px
+          line-height: 14px
+          border: none
+          color: white
+          background-color: #4a4a4a
+          padding: 0 2px
+          cursor: pointer

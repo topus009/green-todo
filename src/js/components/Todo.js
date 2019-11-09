@@ -1,4 +1,5 @@
 import React from 'react';
+import cn from 'classnames';
 import moment from 'moment';
 import EditableCell from '../common/EditableCell';
 
@@ -16,7 +17,7 @@ const Todo = ({
   const time = momentDate.format('HH:mm');
   const onChange = value => handleChange({ ID, value });
   return (
-    <tr className="todo">
+    <tr className={cn('todo', { checked })}>
       <td className="todo_action">
         <input type="checkbox" onChange={() => onSelect(ID)} checked={checked} />
       </td>

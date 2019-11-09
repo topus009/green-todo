@@ -11,6 +11,7 @@ import {
   getBinaryFromString,
   getNumberFromDate,
   getNumberFromStringBool,
+  convertArrayToString,
 } from '../helpers/common';
 
 const sortingRules = {
@@ -26,7 +27,7 @@ const Todos = ({ todos, loading, getTodos, changeTodoTitle, toggleTodoCompleted 
   const [selectedItems, setSelectedItems] = useState([]);
   const [selectedAll, setSelectedAll] = useState(false);
   const [sortBy, sortOrder, handleSort] = useSorting(null, defaultSortOrder);
-  const [editingId, setEditingId] = useState(1);
+  const [editingId, setEditingId] = useState(null);
 
   const sortingProps = {
     sortBy,
@@ -65,7 +66,11 @@ const Todos = ({ todos, loading, getTodos, changeTodoTitle, toggleTodoCompleted 
   };
 
   const handleSetEditing = (id = null) => setEditingId(id);
-  const handleToggleTodoCompleted = (ids = []) => toggleTodoCompleted(ids.map(id => `${id}`));
+  const handleToggleTodoCompleted = (ids = []) => toggleTodoCompleted(convertArrayToString(ids));
+  const handleToggleSelectedTodoCompleted = e => {
+    e.stopPropagation();
+    toggleTodoCompleted(convertArrayToString(selectedItems));
+  };
 
   const sortedTodos = sortIds(todosIds, todos, sortBy, sortOrder, sortingRules);
 
@@ -81,7 +86,13 @@ const Todos = ({ todos, loading, getTodos, changeTodoTitle, toggleTodoCompleted 
               <THeadCellWithSoring label="№" sortName="ID" />,
               <THeadCellWithSoring label="Название" sortName="Title" />,
               <THeadCellWithSoring label="Время" sortName="DueDate" />,
-              <THeadCellWithSoring label="Статус" sortName="Completed" />,
+              <THeadCellWithSoring label="Статус" sortName="Completed" className="todo_header_status">
+                {selectedItems.length ? (
+                  <button type="button" onClick={handleToggleSelectedTodoCompleted} disabled={!selectedItems.length}>
+                    Изменить
+                  </button>
+                ) : null}
+              </THeadCellWithSoring>,
             ],
             sortingProps
           )}

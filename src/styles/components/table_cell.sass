@@ -5,26 +5,14 @@ table
         &.table-cell
           &.sorting
             cursor: pointer
-            position: relative
-            padding-right: 15px
-            &:hover,
+          &:hover
+            color: orange
+          .sort_icon
+            padding-left: 10px
+            color: orange
+            visibility: hidden
             &.sortByCurrent
-              color: orange
-            &.sortByCurrent
-              &.asc
-                &:after
-                  content: '\/\\'
-              &.desc
-                &:after
-                  content: '\\\/'
-              &.asc,
-              &.desc
-                &:after
-                  position: absolute
-                  top: 0
-                  right: 0
-                  width: 10px
-                  height: 10px
+              visibility: visible
 
 
 
