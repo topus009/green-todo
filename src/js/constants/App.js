@@ -5,4 +5,5 @@ export default keyMirror({
   GETTODOS: null,
   GETTODOSERROR: null,
   CHANGETODOTITLE: null,
+  TOGGLETODOCOMPLETED: null,
 });

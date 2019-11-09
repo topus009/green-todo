@@ -1,6 +1,6 @@
 import constants from '../constants/App';
 
-const { GETTODOS, PENDING, CHANGETODOTITLE } = constants;
+const { GETTODOS, PENDING, CHANGETODOTITLE, TOGGLETODOCOMPLETED } = constants;
 
 export const initialState = {
   todos: {},
@@ -37,6 +37,20 @@ export default function app(state = initialState, action) {
           Title: payload.value,
         },
       },
+    };
+  }
+  if (type === TOGGLETODOCOMPLETED) {
+    const { todos } = state;
+    const newTodos = { ...todos };
+    payload.forEach(id => {
+      newTodos[id] = {
+        ...newTodos[id],
+        Completed: !newTodos[id].Completed,
+      };
+    });
+    return {
+      ...state,
+      todos: newTodos,
     };
   }
   return state;

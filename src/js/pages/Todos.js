@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
-import { getTodos, changeTodoTitle } from '../actions/AppActions';
+import { getTodos, changeTodoTitle, toggleTodoCompleted } from '../actions/AppActions';
 import Todo from '../components/Todo';
 import THeadCellWithSoring from '../common/THeadCellWithSoring';
 import renderChildrenWithProps from '../hoc/renderChildrenWithProps';
@@ -22,7 +22,7 @@ const sortingRules = {
 
 const defaultSortOrder = 'desc';
 
-const Todos = ({ todos, loading, getTodos, changeTodoTitle }) => {
+const Todos = ({ todos, loading, getTodos, changeTodoTitle, toggleTodoCompleted }) => {
   const [selectedItems, setSelectedItems] = useState([]);
   const [selectedAll, setSelectedAll] = useState(false);
   const [sortBy, sortOrder, handleSort] = useSorting(null, defaultSortOrder);
@@ -65,6 +65,7 @@ const Todos = ({ todos, loading, getTodos, changeTodoTitle }) => {
   };
 
   const handleSetEditing = (id = null) => setEditingId(id);
+  const handleToggleTodoCompleted = (ids = []) => toggleTodoCompleted(ids.map(id => `${id}`));
 
   const sortedTodos = sortIds(todosIds, todos, sortBy, sortOrder, sortingRules);
 
@@ -99,6 +100,7 @@ const Todos = ({ todos, loading, getTodos, changeTodoTitle }) => {
                   handleChange={changeTodoTitle}
                   setEditingId={handleSetEditing}
                   isEditing={editingId === item.ID}
+                  toggleCompleted={handleToggleTodoCompleted}
                 />
               );
             })
@@ -120,6 +122,7 @@ const mapDispatchToProps = dispatch => {
   return {
     getTodos: () => dispatch(getTodos()),
     changeTodoTitle: params => dispatch(changeTodoTitle(params)),
+    toggleTodoCompleted: params => dispatch(toggleTodoCompleted(params)),
   };
 };
 

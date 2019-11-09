@@ -9,6 +9,7 @@ const Todo = ({
   handleChange,
   setEditingId,
   isEditing,
+  toggleCompleted,
 }) => {
   const momentDate = moment(DueDate);
   const date = momentDate.format('YYYY.MM.DD');
@@ -29,7 +30,9 @@ const Todo = ({
         className="todo_title"
       />
       <td>{`${date}__${time}`}</td>
-      <td className={`todo_status ${Completed ? 'completed' : ''}`}>{Completed.toString()}</td>
+      <td className={`todo_status ${Completed ? 'completed' : ''}`} onClick={() => toggleCompleted([ID])}>
+        {Completed.toString()}
+      </td>
     </tr>
   );
 };

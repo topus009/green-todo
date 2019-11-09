@@ -1,13 +1,13 @@
-import axio from 'axios';
-import { dbPrefix } from '../config/constants';
+// import axio from 'axios';
+// import { dbPrefix } from '../config/constants';
 import constants from '../constants/App';
 import FAKEDATA from '../../FAKE_DATA';
 
-const { GETTODOS, GETTODOSERROR, PENDING, CHANGETODOTITLE } = constants;
+const { GETTODOS, PENDING, CHANGETODOTITLE, TOGGLETODOCOMPLETED } = constants;
 
-const axios = axio.create({
-  baseURL: dbPrefix,
-});
+// const axios = axio.create({
+//   baseURL: dbPrefix,
+// });
 
 export function getTodos() {
   return dispatch => {
@@ -34,6 +34,13 @@ export function getTodos() {
 export function changeTodoTitle(payload) {
   return {
     type: CHANGETODOTITLE,
+    payload,
+  };
+}
+
+export function toggleTodoCompleted(payload) {
+  return {
+    type: TOGGLETODOCOMPLETED,
     payload,
   };
 }

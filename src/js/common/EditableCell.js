@@ -10,7 +10,7 @@ const EditableCell = ({ onChange, value, setEditingId, isEditing, className, ID 
   return (
     <>
       {!isEditing ? (
-        <td onClick={onToggleInputFocus} onFocus={onToggleInputFocus} role="presentation" className={className}>
+        <td onClick={onToggleInputFocus} onFocus={onToggleInputFocus} className={className}>
           {value}
         </td>
       ) : (
