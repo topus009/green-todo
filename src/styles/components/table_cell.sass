@@ -1,0 +1,31 @@
+table
+  thead
+    tr
+      th
+        &.table-cell
+          &.sorting
+            cursor: pointer
+            position: relative
+            padding-right: 15px
+            &:hover,
+            &.sortByCurrent
+              color: orange
+            &.sortByCurrent
+              &.asc
+                &:after
+                  content: '\/\\'
+              &.desc
+                &:after
+                  content: '\\\/'
+              &.asc,
+              &.desc
+                &:after
+                  position: absolute
+                  top: 0
+                  right: 0
+                  width: 10px
+                  height: 10px
+
+
+
+

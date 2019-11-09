@@ -2,14 +2,40 @@ import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import { getTodos } from '../actions/AppActions';
 import Todo from '../components/Todo';
+import THeadCellWithSoring from '../common/THeadCellWithSoring';
+import renderChildrenWithProps from '../hoc/renderChildrenWithProps';
+import { sortIds } from '../helpers/sorting';
+import useSorting from '../hooks/useSorting';
+import {
+  getNumberFromString,
+  getBinaryFromString,
+  getNumberFromDate,
+  getNumberFromStringBool,
+} from '../helpers/common';
+
+const sortingRules = {
+  ID: getNumberFromString,
+  Title: getBinaryFromString,
+  DueDate: getNumberFromDate,
+  Completed: getNumberFromStringBool,
+};
+
+const defaultSortOrder = 'desc';
 
 const Todos = ({ getTodos, todos, loading }) => {
   const [selectedItems, setSelectedItems] = useState([]);
   const [selectedAll, setSelectedAll] = useState(false);
+  const [sortBy, sortOrder, handleSort] = useSorting(null, defaultSortOrder);
 
-  const isSelected = id => selectedItems.includes(id);
+  const sortingProps = {
+    sortBy,
+    sortOrder,
+    handleSort,
+    defaultSortOrder,
+  };
   const todosIds = Object.keys(todos);
   const todosLength = todosIds.length;
+  const isSelected = id => selectedItems.includes(id);
 
   useEffect(() => {
     getTodos();
@@ -37,6 +63,8 @@ const Todos = ({ getTodos, todos, loading }) => {
     }
   };
 
+  const sortedTodos = sortIds(todosIds, todos, sortBy, sortOrder, sortingRules);
+
   return (
     <table className="todos">
       <thead>
@@ -44,15 +72,20 @@ const Todos = ({ getTodos, todos, loading }) => {
           <th>
             <input type="checkbox" onChange={handleSelectAll} checked={selectedAll} />
           </th>
-          <th>№</th>
-          <th>Название</th>
-          <th>Время</th>
-          <th>Статус</th>
+          {renderChildrenWithProps(
+            [
+              <THeadCellWithSoring label="№" sortName="ID" />,
+              <THeadCellWithSoring label="Название" sortName="Title" />,
+              <THeadCellWithSoring label="Время" sortName="DueDate" />,
+              <THeadCellWithSoring label="Статус" sortName="Completed" />,
+            ],
+            sortingProps
+          )}
         </tr>
       </thead>
       <tbody>
-        {!loading && todosIds.length
-          ? todosIds.map(key => {
+        {!loading && sortedTodos.length
+          ? sortedTodos.map(key => {
               const item = todos[key];
               return <Todo key={item.ID} item={item} onSelect={handleSelectItem} checked={isSelected(item.ID)} />;
             })

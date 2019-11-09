@@ -11,7 +11,6 @@ export default function app(state = initialState, action) {
   const { payload, type } = action;
   if (type === GETTODOS) {
     const todos = {};
-    payload.length = 3;
     payload.forEach(todo => {
       todos[todo.ID] = todo;
     });
