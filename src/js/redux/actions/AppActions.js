@@ -1,4 +1,4 @@
-import Api from '../api';
+import Api from '../../api';
 import constants from '../constants/App';
 
 const { GETTODOS, PENDING, CHANGETODOTITLE, TOGGLETODOCOMPLETED, GETTODOSERROR } = constants;

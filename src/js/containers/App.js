@@ -1,8 +1,8 @@
 import React from 'react';
 import { Provider } from 'react-redux';
 import Router from '../router';
-import configureStore from '../store';
-import constants from '../constants/Auth';
+import configureStore from '../redux/store';
+import constants from '../redux/constants/Auth';
 import ErrorBoundary from '../hoc/ErrorBoundary';
 
 const { AUTH_TOKEN } = constants;

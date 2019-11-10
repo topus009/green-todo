@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
-import { getTodos, changeTodoTitle, toggleTodoCompleted } from '../actions/AppActions';
+import { getTodos, changeTodoTitle, toggleTodoCompleted } from '../redux/actions/AppActions';
 import Todo from '../components/Todo';
 import THeadCellWithSoring from '../components/common/THeadCellWithSoring';
 import renderChildrenWithProps from '../hoc/renderChildrenWithProps';

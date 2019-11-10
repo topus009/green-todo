@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
-import { signUp } from '../actions/AuthActions';
+import { signUp } from '../redux/actions/AuthActions';
 import TextInput from '../components/common/TextInput';
 import Loader from '../components/common/Loader';
 

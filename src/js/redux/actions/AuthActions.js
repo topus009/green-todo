@@ -1,5 +1,5 @@
-import Api from '../api';
-import { token as fakeToken } from '../config/constants';
+import Api from '../../api';
+import { token as fakeToken } from '../../config/constants';
 import constants from '../constants/Auth';
 
 const { AUTH_TOKEN, AUTH_USER, AUTH_ERROR, AUTH_REQUEST } = constants;

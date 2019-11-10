@@ -1,5 +1,5 @@
-import constants from '../../constants/Auth';
-import { getUser } from '../../actions/AuthActions';
+import constants from '../constants/Auth';
+import { getUser } from '../actions/AuthActions';
 
 const { AUTH_TOKEN } = constants;
 
