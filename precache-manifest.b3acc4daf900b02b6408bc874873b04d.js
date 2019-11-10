@@ -1,11 +1,11 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "29c4a1478d60cde89438ebef4fd53443",
+    "revision": "179932ab84b1f309a5f0df264f3172c4",
     "url": "/green-todo/index.html"
   },
   {
-    "revision": "1a89064454505a0214bd",
-    "url": "/green-todo/static/css/main.e739f57b.chunk.css"
+    "revision": "ae6bdc678299c2e1def9",
+    "url": "/green-todo/static/css/main.1d0e3a1f.chunk.css"
   },
   {
     "revision": "1a6aefa0346cf81dc942",
@@ -24,7 +24,7 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/green-todo/static/js/5.ea1cd4f2.chunk.js"
   },
   {
-    "revision": "1a89064454505a0214bd",
+    "revision": "ae6bdc678299c2e1def9",
     "url": "/green-todo/static/js/main.d06d1177.chunk.js"
   },
   {
