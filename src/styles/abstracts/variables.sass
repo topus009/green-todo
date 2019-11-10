@@ -1,16 +1,15 @@
-$static-path: null
+$public-url: '/green-todo'
 $font-path: null
+$images_path: null
 
 @if $env == dev
-  $static-path: ''
   $font-path: '/fonts/'
+  $images_path: '/images/'
 @else
-  $static-path: '/public'
-  $font-path: '/public/fonts/'
-
-$images_path: '#{$static-path}/images/'
+  $font-path: '#{$public-url}/fonts/'
+  $images_path: '#{$public-url}/images/'
 
 // ================ COLORS ================
-$green-100: #00be73;
-$violet-100: #5f19aa;
+$green-100: #00be73
+$violet-100: #5f19aa
 // ========================================
