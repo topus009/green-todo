@@ -1,17 +1,18 @@
 .todo_title
-  height: 20px
-  border: 1px solid
-  border-color: black
-  min-width: 164px
-  cursor: pointer
-  &.isEditing
-    border-color: darkgray
-  input
-    border: none
-    &.text_input
-      background-color: black
-      color: white
-      outline: none
-      &:hocus,
-      &:active
+  +themify($themes)
+    height: 20px
+    border: 1px solid
+    border-color: themed('todo_title_border_color')
+    min-width: 164px
+    cursor: pointer
+    &.isEditing
+      border-color: themed('todo_title_editing_border_color')
+    input
+      border: none
+      &.text_input
+        background-color: themed('todo_title_input_bg_color')
+        color: themed('todo_title_input_color')
         outline: none
+        &:hocus,
+        &:active
+          outline: none

@@ -1,1 +1,21 @@
-$theme-1: ();
+$theme-1: (
+  body_bg_color: $black-100,
+  todo_color: $white-100,
+  todo_hover_bg_color: $gray-300,
+  todo_checked_bg_color: $blue-200,
+  todo_checked_hover_bg_color: $blue-100,
+  todo_status_color: $red-100,
+  todo_status_completed_color: $green-200,
+  todos_header_status_btn_color: $white-100,
+  todos_header_status_btn_bg_color: $gray-100,
+  todo_title_editing_border_color: $gray-200,
+  todo_title_input_color: $white-100,
+  todo_title_input_bg_color: $black-100,
+  todo_title_border_color: $black-100,
+  table_head_cell_hover_color: $orange-100,
+  table_head_cell_sort_icon_color: $orange-100,
+  loader_circle_bg_color: $violet-100,
+  loader_circle_bounce_bg_color: $green-100,
+  header_bg_color: $black-200,
+  header_user_color: $blue-300,
+);

@@ -1,18 +1,19 @@
 table
-  thead
-    tr
-      th
-        &.table-cell
-          &.sorting
-            cursor: pointer
-          &:hover
-            color: orange
-          .sort_icon
-            padding-left: 10px
-            color: orange
-            visibility: hidden
-            &.sortByCurrent
-              visibility: visible
+  +themify($themes)
+    thead
+      tr
+        th
+          &.table-cell
+            &.sorting
+              cursor: pointer
+            &:hover
+              color: themed('table_head_cell_hover_color')
+            .sort_icon
+              padding-left: 10px
+              color: themed('table_head_cell_sort_icon_color')
+              visibility: hidden
+              &.sortByCurrent
+                visibility: visible
 
 
 

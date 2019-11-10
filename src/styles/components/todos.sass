@@ -1,27 +1,28 @@
 .todos
-  border-collapse: separate
-  border-spacing: 10px 0
-  color: white
-  .todo
-    &.checked
-      background-color: #003f55
-    &:hover
-      background-color: #505050
+  +themify($themes)
+    border-collapse: separate
+    border-spacing: 10px 0
+    color: themed('todo_color')
+    .todo
       &.checked
-        background-color: #004b66
-    &_status
-      cursor: pointer
-      color: red
-      &.completed
-        color: green
-    &_header
+        background-color: themed('todo_checked_bg_color')
+      &:hover
+        background-color: themed('todo_hover_bg_color')
+        &.checked
+          background-color: themed('todo_checked_hover_bg_color')
       &_status
-        display: flex
-        button
-          margin-left: 10px
-          line-height: 14px
-          border: none
-          color: white
-          background-color: #4a4a4a
-          padding: 0 2px
-          cursor: pointer
+        cursor: pointer
+        color: themed('todo_status_color')
+        &.completed
+          color: themed('todo_status_completed_color')
+      &_header
+        &_status
+          display: flex
+          button
+            margin-left: 10px
+            line-height: 14px
+            border: none
+            color: themed('todos_header_status_btn_color')
+            background-color: themed('todos_header_status_btn_bg_color')
+            padding: 0 2px
+            cursor: pointer
