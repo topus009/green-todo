@@ -1,19 +1,14 @@
-import axio from 'axios';
-import { dbPrefix } from '../config/constants';
+import Api from '../api';
 import constants from '../constants/App';
 
 const { GETTODOS, PENDING, CHANGETODOTITLE, TOGGLETODOCOMPLETED, GETTODOSERROR } = constants;
 
-const axios = axio.create({
-  baseURL: dbPrefix,
-});
-
 export function getTodos() {
   return dispatch => {
     dispatch({ type: PENDING });
-    return axios
-      .get('/Activities')
-      .then(({ data }) => {
+    return Api.todos
+      .getTodos()
+      .then(data => {
         dispatch({
           type: GETTODOS,
           payload: data,

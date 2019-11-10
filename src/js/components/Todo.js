@@ -1,7 +1,7 @@
 import React from 'react';
 import cn from 'classnames';
 import moment from 'moment';
-import EditableCell from '../common/EditableCell';
+import EditableCell from './common/EditableCell';
 
 const Todo = ({
   item: { Title, ID, DueDate, Completed },

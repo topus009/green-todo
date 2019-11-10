@@ -1,5 +1,5 @@
 import constants from '../../constants/Auth';
-import { history } from '../../routes/routes';
+import { history } from '../../router/router';
 
 const { AUTH_USER } = constants;
 

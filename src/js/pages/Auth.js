@@ -1,14 +1,17 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import { signUp } from '../actions/AuthActions';
-import TextInput from '../common/TextInput';
-import Loader from '../common/Loader';
+import TextInput from '../components/common/TextInput';
+import Loader from '../components/common/Loader';
 
 const Auth = ({ signUp, loading }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+
   const handleSubmit = () => signUp({ email, password });
+
   const isBtnDisabled = () => !email.trim().length || !password.trim().length;
+
   return (
     <>
       {!loading ? (

@@ -1,12 +1,8 @@
-import axio from 'axios';
-import { dbPrefix, token as fakeToken } from '../config/constants';
+import Api from '../api';
+import { token as fakeToken } from '../config/constants';
 import constants from '../constants/Auth';
 
 const { AUTH_TOKEN, AUTH_USER, AUTH_ERROR, AUTH_REQUEST } = constants;
-
-const axios = axio.create({
-  baseURL: dbPrefix,
-});
 
 export function authError(error) {
   return {
@@ -18,8 +14,8 @@ export function authError(error) {
 export function signUp({ email, password }) {
   return dispatch => {
     dispatch({ type: AUTH_REQUEST });
-    axios
-      .post('/Users', {
+    Api.auth
+      .signUp({
         UserName: email,
         Password: password,
       })
@@ -33,9 +29,9 @@ export function signUp({ email, password }) {
 
 export function getUser(/* token */) {
   return dispatch => {
-    axios
-      .get(`/Users/${1}`)
-      .then(({ data }) => {
+    Api.auth
+      .getUser()
+      .then(data => {
         dispatch({ type: AUTH_USER, payload: data });
       })
       .catch(err => {

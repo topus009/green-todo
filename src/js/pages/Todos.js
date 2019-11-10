@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import { getTodos, changeTodoTitle, toggleTodoCompleted } from '../actions/AppActions';
 import Todo from '../components/Todo';
-import THeadCellWithSoring from '../common/THeadCellWithSoring';
+import THeadCellWithSoring from '../components/common/THeadCellWithSoring';
 import renderChildrenWithProps from '../hoc/renderChildrenWithProps';
 import { sortIds } from '../helpers/sorting';
 import useSorting from '../hooks/useSorting';
@@ -29,19 +29,16 @@ const Todos = ({ todos, loading, getTodos, changeTodoTitle, toggleTodoCompleted 
   const [sortBy, sortOrder, handleSort] = useSorting(null, defaultSortOrder);
   const [editingId, setEditingId] = useState(null);
 
+  const todosIds = Object.keys(todos);
+  const todosLength = todosIds.length;
   const sortingProps = {
     sortBy,
     sortOrder,
     handleSort,
     defaultSortOrder,
   };
-  const todosIds = Object.keys(todos);
-  const todosLength = todosIds.length;
-  const isSelected = id => selectedItems.includes(id);
 
-  useEffect(() => {
-    getTodos();
-  }, [getTodos]);
+  const isSelected = id => selectedItems.includes(id);
 
   const handleSelectItem = ID => {
     if (isSelected(ID)) {
@@ -66,13 +63,19 @@ const Todos = ({ todos, loading, getTodos, changeTodoTitle, toggleTodoCompleted 
   };
 
   const handleSetEditing = (id = null) => setEditingId(id);
+
   const handleToggleTodoCompleted = (ids = []) => toggleTodoCompleted(convertArrayToString(ids));
+
   const handleToggleSelectedTodoCompleted = e => {
     e.stopPropagation();
     toggleTodoCompleted(convertArrayToString(selectedItems));
   };
 
   const sortedTodos = sortIds(todosIds, todos, sortBy, sortOrder, sortingRules);
+
+  useEffect(() => {
+    getTodos();
+  }, [getTodos]);
 
   return (
     <table className="todos container">

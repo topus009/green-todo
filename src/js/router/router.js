@@ -1,15 +1,12 @@
-import React, { lazy, Suspense } from 'react';
+import React, { Suspense } from 'react';
 import { connect } from 'react-redux';
 import Helmet from 'react-helmet';
-import { Router, Route, Switch } from 'react-router-dom';
+import { Router } from 'react-router-dom';
 import { createHashHistory } from 'history';
 import { defaultTheme } from '../config/theme';
-import Loader from '../common/Loader';
-import withAuth from '../hoc/withAuth';
+import Loader from '../components/common/Loader';
 import Header from '../components/Header';
-
-const Auth = lazy(() => import('../pages/Auth'));
-const Todos = lazy(() => import('../pages/Todos'));
+import Routes from './routes';
 
 export const history = createHashHistory();
 
@@ -18,10 +15,7 @@ const AppRouter = ({ user }) => (
     <Helmet htmlAttributes={{ class: `theme-${defaultTheme}` }} />
     <Suspense fallback={<Loader />}>
       {user && <Header user={user} />}
-      <Switch>
-        <Route exact path="/" component={Auth} />
-        <Route exact path="/todos" component={withAuth(Todos)} />
-      </Switch>
+      <Routes />
     </Suspense>
   </Router>
 );
