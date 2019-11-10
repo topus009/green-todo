@@ -41,7 +41,7 @@ const Todos = ({ todos, loading, getTodos, changeTodoTitle, toggleTodoCompleted 
 
   useEffect(() => {
     getTodos();
-  }, []);
+  }, [getTodos]);
 
   const handleSelectItem = ID => {
     if (isSelected(ID)) {
@@ -137,7 +137,4 @@ const mapDispatchToProps = dispatch => {
   };
 };
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(Todos);
+export default connect(mapStateToProps, mapDispatchToProps)(Todos);

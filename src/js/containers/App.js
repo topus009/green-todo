@@ -3,8 +3,7 @@ import { Provider } from 'react-redux';
 import AppRouter from '../routes';
 import configureStore from '../store';
 import constants from '../constants/Auth';
-
-import '../../styles/base/_main.sass';
+import ErrorBoundary from '../hoc/ErrorBoundary';
 
 const { AUTH_TOKEN } = constants;
 
@@ -16,12 +15,14 @@ if (token) {
   store.dispatch({ type: AUTH_TOKEN });
 }
 
-const Main = () => {
+const App = () => {
   return (
-    <Provider store={store}>
-      <AppRouter />
-    </Provider>
+    <ErrorBoundary>
+      <Provider store={store}>
+        <AppRouter />
+      </Provider>
+    </ErrorBoundary>
   );
 };
 
-export default Main;
+export default App;
