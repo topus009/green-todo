@@ -1,7 +1,23 @@
 import React from 'react';
+import { string, bool, number, func, shape } from 'prop-types';
 import cn from 'classnames';
 import moment from 'moment';
 import EditableCell from './common/EditableCell';
+
+const propTypes = {
+  item: shape({
+    ID: number,
+    UserName: string,
+    DueDate: string,
+    Completed: bool,
+  }),
+  onSelect: func.isRequired,
+  checked: bool.isRequired,
+  handleChange: func.isRequired,
+  setEditingId: func.isRequired,
+  isEditing: bool.isRequired,
+  toggleCompleted: func.isRequired,
+};
 
 const Todo = ({
   item: { Title, ID, DueDate, Completed },
@@ -37,5 +53,7 @@ const Todo = ({
     </tr>
   );
 };
+
+Todo.propTypes = propTypes;
 
 export default Todo;

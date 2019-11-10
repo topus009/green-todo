@@ -1,5 +1,25 @@
 import React from 'react';
 import cn from 'classnames';
+import { string, node, func } from 'prop-types';
+
+const propTypes = {
+  label: string.isRequired,
+  className: string,
+  sortBy: string,
+  sortOrder: string,
+  sortName: string.isRequired,
+  handleSort: func,
+  defaultSortOrder: string,
+  children: node,
+};
+
+const defaultProps = {
+  className: '',
+  sortBy: null,
+  sortOrder: null,
+  handleSort: () => false,
+  defaultSortOrder: 'desc',
+};
 
 const THeadCellWithSoring = ({
   label,
@@ -46,5 +66,8 @@ const THeadCellWithSoring = ({
     </th>
   );
 };
+
+THeadCellWithSoring.propTypes = propTypes;
+THeadCellWithSoring.defaultProps = defaultProps;
 
 export default THeadCellWithSoring;

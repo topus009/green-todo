@@ -1,6 +1,23 @@
 import React from 'react';
+import { string, bool, func } from 'prop-types';
 
-const TextInput = ({ value, onBlur = () => false, onChange, autoFocus = false, placeholder = '', type = 'text' }) => {
+const propTypes = {
+  value: string.isRequired,
+  onBlur: func,
+  onChange: func.isRequired,
+  autoFocus: bool,
+  placeholder: string,
+  type: string,
+};
+
+const defaultProps = {
+  autoFocus: false,
+  placeholder: '',
+  type: 'text',
+  onBlur: () => false,
+};
+
+const TextInput = ({ value, onBlur, onChange, autoFocus, placeholder, type }) => {
   const handleChange = e => onChange(e.target.value);
   return (
     <input
@@ -14,5 +31,8 @@ const TextInput = ({ value, onBlur = () => false, onChange, autoFocus = false, p
     />
   );
 };
+
+TextInput.propTypes = propTypes;
+TextInput.defaultProps = defaultProps;
 
 export default TextInput;

@@ -1,4 +1,5 @@
 import React, { Suspense } from 'react';
+import { shape, string, number, bool } from 'prop-types';
 import { connect } from 'react-redux';
 import Helmet from 'react-helmet';
 import { Router as ReactRouter } from 'react-router-dom';
@@ -9,6 +10,15 @@ import Header from '../components/Header';
 import Routes from './routes';
 
 export const history = createHashHistory();
+
+const propTypes = {
+  user: shape({
+    ID: number,
+    UserName: string.isRequired,
+    DueDate: string,
+    Completed: bool,
+  }),
+};
 
 const AppRouter = ({ user }) => (
   <ReactRouter history={history} basename="/green-todo">
@@ -26,5 +36,7 @@ const mapStateToProps = ({ auth }) => {
     user,
   };
 };
+
+AppRouter.propTypes = propTypes;
 
 export default connect(mapStateToProps)(AppRouter);

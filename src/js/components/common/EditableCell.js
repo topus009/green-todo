@@ -1,6 +1,20 @@
 import React from 'react';
+import { string, bool, number, func } from 'prop-types';
 import cn from 'classnames';
 import TextInput from './TextInput';
+
+const propTypes = {
+  onChange: func.isRequired,
+  value: string.isRequired,
+  setEditingId: func.isRequired,
+  isEditing: bool.isRequired,
+  className: string,
+  ID: number.isRequired,
+};
+
+const defaultProps = {
+  className: '',
+};
 
 const EditableCell = ({ onChange, value, setEditingId, isEditing, className, ID }) => {
   const onToggleInputFocus = () => {
@@ -21,5 +35,8 @@ const EditableCell = ({ onChange, value, setEditingId, isEditing, className, ID 
     </>
   );
 };
+
+EditableCell.propTypes = propTypes;
+EditableCell.defaultProps = defaultProps;
 
 export default EditableCell;
