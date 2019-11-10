@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, memo } from 'react';
 import { connect } from 'react-redux';
 
 const withAuth = WrappedComponent => {
@@ -17,7 +17,7 @@ const withAuth = WrappedComponent => {
     };
   };
 
-  return connect(mapStateToProps)(Authentication);
+  return memo(connect(mapStateToProps)(Authentication));
 };
 
 export default withAuth;

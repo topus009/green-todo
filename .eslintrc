@@ -9,7 +9,6 @@
     "react/jsx-filename-extension": ["warn", { "extensions": [".js", ".jsx"] }],
     "react/no-array-index-key": 0,
     "react/prop-types": 1,
-    "react-hooks/exhaustive-deps": 0,
     "max-len": [
       "warn",
       {

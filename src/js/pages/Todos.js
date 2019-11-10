@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useCallback } from 'react';
 import { connect } from 'react-redux';
 import { shape, string, number, bool, func, objectOf } from 'prop-types';
 import { getTodos, changeTodoTitle, toggleTodoCompleted } from '../redux/actions/AppActions';
@@ -50,9 +50,11 @@ const Todos = ({ todos, loading, getTodos, changeTodoTitle, toggleTodoCompleted 
   const [sortBy, sortOrder, handleSort] = useSorting(null, defaultSortOrder);
   const [editingId, setEditingId] = useState(null);
 
+  const memoisedGetTodos = useCallback(() => getTodos(), [getTodos]);
+
   useEffect(() => {
-    getTodos();
-  }, []);
+    memoisedGetTodos();
+  }, [memoisedGetTodos]);
 
   const todosIds = Object.keys(todos);
   const todosLength = todosIds.length;
