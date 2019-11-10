@@ -1,6 +1,6 @@
 {
   "files": {
-    "main.css": "/green-todo/static/css/main.beb529d6.chunk.css",
+    "main.css": "/green-todo/static/css/main.70b7a5e8.chunk.css",
     "main.js": "/green-todo/static/js/main.febd2cc9.chunk.js",
     "main.js.map": "/green-todo/static/js/main.febd2cc9.chunk.js.map",
     "runtime-main.js": "/green-todo/static/js/runtime-main.a0fa22c4.js",
@@ -14,14 +14,14 @@
     "static/js/5.ea1cd4f2.chunk.js": "/green-todo/static/js/5.ea1cd4f2.chunk.js",
     "static/js/5.ea1cd4f2.chunk.js.map": "/green-todo/static/js/5.ea1cd4f2.chunk.js.map",
     "index.html": "/green-todo/index.html",
-    "precache-manifest.6e48b1e69a2a4ef24f80c9ad562c90c2.js": "/green-todo/precache-manifest.6e48b1e69a2a4ef24f80c9ad562c90c2.js",
+    "precache-manifest.383304c0e9e73336894d2af8c9117c47.js": "/green-todo/precache-manifest.383304c0e9e73336894d2af8c9117c47.js",
     "service-worker.js": "/green-todo/service-worker.js",
-    "static/css/main.beb529d6.chunk.css.map": "/green-todo/static/css/main.beb529d6.chunk.css.map"
+    "static/css/main.70b7a5e8.chunk.css.map": "/green-todo/static/css/main.70b7a5e8.chunk.css.map"
   },
   "entrypoints": [
     "static/js/runtime-main.a0fa22c4.js",
     "static/js/2.8ba06d54.chunk.js",
-    "static/css/main.beb529d6.chunk.css",
+    "static/css/main.70b7a5e8.chunk.css",
     "static/js/main.febd2cc9.chunk.js"
   ]
 }
