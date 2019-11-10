@@ -75,7 +75,7 @@ const Todos = ({ todos, loading, getTodos, changeTodoTitle, toggleTodoCompleted 
   const sortedTodos = sortIds(todosIds, todos, sortBy, sortOrder, sortingRules);
 
   return (
-    <table className="todos">
+    <table className="todos container">
       <thead>
         <tr>
           <th>

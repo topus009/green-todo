@@ -16,6 +16,10 @@ const STATIC = resolve(
   'public'
 );
 
+const colorLog = (message, color = 'white', type = 'log') => {
+  console[type](`%c${message}`, `color:${color}`);
+};
+
 module.exports = () => {
   return {
     ...common,
@@ -51,6 +55,7 @@ module.exports = () => {
       new webpack.HotModuleReplacementPlugin(),
       new webpack.DefinePlugin({
         PRODUCTION: false,
+        logg: colorLog,
       }),
       // new BrowserSyncPlugin({
       //   host: HOST,

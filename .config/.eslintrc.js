@@ -43,5 +43,6 @@ module.exports = {
   },
   globals: {
     PRODUCTION: 'readonly',
+    logg: 'readonly',
   },
 };
