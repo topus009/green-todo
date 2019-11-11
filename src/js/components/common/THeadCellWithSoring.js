@@ -17,7 +17,6 @@ const defaultProps = {
   className: '',
   sortBy: null,
   sortOrder: null,
-  handleSort: () => false,
   defaultSortOrder: 'desc',
 };
 

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { memo } from 'react';
 import { string, bool, number, func, shape } from 'prop-types';
 import cn from 'classnames';
 import moment from 'moment';
@@ -19,7 +19,8 @@ const propTypes = {
   toggleCompleted: func.isRequired,
 };
 
-const Todo = ({ item, onSelect, checked, handleChange, setEditingId, isEditing, toggleCompleted }) => {
+const Todo = props => {
+  const { item, onSelect, checked, handleChange, setEditingId, isEditing, toggleCompleted } = props;
   const { Title, ID, DueDate, Completed } = item;
   const momentDate = moment(DueDate);
   const date = momentDate.format('YYYY.MM.DD');
@@ -49,4 +50,4 @@ const Todo = ({ item, onSelect, checked, handleChange, setEditingId, isEditing, 
 
 Todo.propTypes = propTypes;
 
-export default Todo;
+export default memo(Todo);

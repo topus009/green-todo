@@ -65,20 +65,23 @@ const Todos = ({ todos, loading, getTodos, changeTodoTitle, toggleTodoCompleted 
     defaultSortOrder,
   };
 
-  const isSelected = id => selectedItems.includes(id);
+  const isSelected = useCallback(id => selectedItems.includes(id), [selectedItems]);
 
-  const handleSelectItem = ID => {
-    if (isSelected(ID)) {
-      setSelectedItems(selectedItems.filter(item => item !== ID));
-      setSelectedAll(false);
-    } else {
-      const newSelectedItems = [...selectedItems, ID];
-      setSelectedItems([...selectedItems, ID]);
-      if (newSelectedItems.length === todosLength) {
-        setSelectedAll(true);
+  const handleSelectItem = useCallback(
+    ID => {
+      if (isSelected(ID)) {
+        setSelectedItems(selectedItems.filter(item => item !== ID));
+        setSelectedAll(false);
+      } else {
+        const newSelectedItems = [...selectedItems, ID];
+        setSelectedItems([...selectedItems, ID]);
+        if (newSelectedItems.length === todosLength) {
+          setSelectedAll(true);
+        }
       }
-    }
-  };
+    },
+    [selectedItems, todosLength, setSelectedAll, isSelected, setSelectedItems]
+  );
 
   const handleSelectAll = ({ target: { checked } }) => {
     setSelectedAll(checked);
@@ -89,9 +92,11 @@ const Todos = ({ todos, loading, getTodos, changeTodoTitle, toggleTodoCompleted 
     }
   };
 
-  const handleSetEditing = (id = null) => setEditingId(id);
+  const handleSetEditing = useCallback((id = null) => setEditingId(id), [setEditingId]);
 
-  const handleToggleTodoCompleted = (ids = []) => toggleTodoCompleted(convertArrayToString(ids));
+  const handleToggleTodoCompleted = useCallback((ids = []) => toggleTodoCompleted(convertArrayToString(ids)), [
+    toggleTodoCompleted,
+  ]);
 
   const handleToggleSelectedTodoCompleted = e => {
     e.stopPropagation();
@@ -131,23 +136,21 @@ const Todos = ({ todos, loading, getTodos, changeTodoTitle, toggleTodoCompleted 
             </tr>
           </thead>
           <tbody>
-            {!loading && sortedTodos.length
-              ? sortedTodos.map(key => {
-                  const item = todos[key];
-                  return (
-                    <Todo
-                      key={item.ID}
-                      item={item}
-                      onSelect={handleSelectItem}
-                      checked={isSelected(item.ID)}
-                      handleChange={changeTodoTitle}
-                      setEditingId={handleSetEditing}
-                      isEditing={editingId === item.ID}
-                      toggleCompleted={handleToggleTodoCompleted}
-                    />
-                  );
-                })
-              : null}
+            {sortedTodos.map(key => {
+              const item = todos[key];
+              return (
+                <Todo
+                  key={item.ID}
+                  item={item}
+                  onSelect={handleSelectItem}
+                  checked={isSelected(item.ID)}
+                  handleChange={changeTodoTitle}
+                  setEditingId={handleSetEditing}
+                  isEditing={editingId === item.ID}
+                  toggleCompleted={handleToggleTodoCompleted}
+                />
+              );
+            })}
           </tbody>
         </table>
       ) : null}
