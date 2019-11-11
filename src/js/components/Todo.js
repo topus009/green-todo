@@ -19,15 +19,8 @@ const propTypes = {
   toggleCompleted: func.isRequired,
 };
 
-const Todo = ({
-  item: { Title, ID, DueDate, Completed },
-  onSelect,
-  checked,
-  handleChange,
-  setEditingId,
-  isEditing,
-  toggleCompleted,
-}) => {
+const Todo = ({ item, onSelect, checked, handleChange, setEditingId, isEditing, toggleCompleted }) => {
+  const { Title, ID, DueDate, Completed } = item;
   const momentDate = moment(DueDate);
   const date = momentDate.format('YYYY.MM.DD');
   const time = momentDate.format('HH:mm');
