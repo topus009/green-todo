@@ -25,7 +25,6 @@ const THeadCellWithSoring = props => {
   const { label, className, sortOrder, sortBy, sortName, handleSort, defaultSortOrder, children, ...rest } = props;
   const isSorting = sortName === sortBy;
   const asc = sortOrder === 'asc';
-  const desc = sortOrder === 'desc';
   const classes = cn('table-cell sorting', {
     [className]: className,
   });
@@ -43,7 +42,7 @@ const THeadCellWithSoring = props => {
   return (
     <th {...rest} className={classes} onClick={onSort}>
       {label}
-      <span className={iconClasses}>{desc ? '\\/' : '/\\'}</span>
+      <span className={iconClasses}>{asc ? '/\\' : '\\/'}</span>
       {children}
     </th>
   );

@@ -1,4 +1,4 @@
-import React, { memo } from 'react';
+import React, { memo, useCallback } from 'react';
 import { string, bool, number, func, shape } from 'prop-types';
 import cn from 'classnames';
 import moment from 'moment';
@@ -25,7 +25,9 @@ const Todo = props => {
   const momentDate = moment(DueDate);
   const date = momentDate.format('YYYY.MM.DD');
   const time = momentDate.format('HH:mm');
-  const onChange = value => handleChange({ ID, value });
+
+  const onChange = useCallback(value => handleChange({ ID, value }), [handleChange, ID]);
+
   return (
     <tr className={cn('todo', { checked })}>
       <td className="todo_action">

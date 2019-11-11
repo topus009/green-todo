@@ -73,7 +73,7 @@ const Todos = ({ todos, loading, getTodos, changeTodoTitle, toggleTodoCompleted 
         setSelectedAll(false);
       } else {
         const newSelectedItems = [...selectedItems, ID];
-        setSelectedItems([...selectedItems, ID]);
+        setSelectedItems(newSelectedItems);
         if (newSelectedItems.length === todosLength) {
           setSelectedAll(true);
         }
@@ -82,14 +82,17 @@ const Todos = ({ todos, loading, getTodos, changeTodoTitle, toggleTodoCompleted 
     [selectedItems, todosLength, setSelectedAll, isSelected, setSelectedItems]
   );
 
-  const handleSelectAll = ({ target: { checked } }) => {
-    setSelectedAll(checked);
-    if (checked) {
-      setSelectedItems(todosIds.map(key => todos[key].ID));
-    } else {
-      setSelectedItems([]);
-    }
-  };
+  const handleSelectAll = useCallback(
+    ({ target: { checked } }) => {
+      setSelectedAll(checked);
+      if (checked) {
+        setSelectedItems(todosIds.map(key => todos[key].ID));
+      } else {
+        setSelectedItems([]);
+      }
+    },
+    [todos, todosIds, setSelectedItems, setSelectedAll]
+  );
 
   const handleSetEditing = useCallback((id = null) => setEditingId(id), [setEditingId]);
 

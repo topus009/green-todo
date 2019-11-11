@@ -16,7 +16,9 @@ const defaultProps = {
   className: '',
 };
 
-const EditableCell = ({ onChange, value, setEditingId, isEditing, className, ID }) => {
+const EditableCell = props => {
+  const { onChange, value, setEditingId, isEditing, className, ID } = props;
+
   const onToggleInputFocus = () => {
     setEditingId(null);
     setEditingId(ID);
