@@ -1,6 +1,6 @@
 import constants from '../constants/App';
 
-const { GETTODOS, PENDING, CHANGETODOTITLE, TOGGLETODOCOMPLETED } = constants;
+const { GETTODOS, PENDING, CHANGETODOTITLE, TOGGLETODOCOMPLETED, GETTODOSERROR } = constants;
 
 export const initialState = {
   todos: {},
@@ -24,6 +24,12 @@ export default function app(state = initialState, action) {
     return {
       ...state,
       loading: true,
+    };
+  }
+  if (type === GETTODOSERROR) {
+    return {
+      ...state,
+      loading: false,
     };
   }
   if (type === CHANGETODOTITLE) {

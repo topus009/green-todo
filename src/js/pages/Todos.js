@@ -4,7 +4,6 @@ import { shape, string, number, bool, func, objectOf } from 'prop-types';
 import { getTodos, changeTodoTitle, toggleTodoCompleted } from '../redux/actions/AppActions';
 import Todo from '../components/Todo';
 import THeadCellWithSoring from '../components/common/THeadCellWithSoring';
-import renderChildrenWithProps from '../hoc/renderChildrenWithProps';
 import { sortIds } from '../helpers/sorting';
 import useSorting from '../hooks/useSorting';
 import {
