@@ -1,12 +1,13 @@
-import React from 'react';
+import React, { useMemo, memo, useCallback } from 'react';
 import cn from 'classnames';
 import { string, node, func } from 'prop-types';
+import { getSortBy } from '../../helpers/sorting';
 
 const propTypes = {
   label: string.isRequired,
   className: string,
-  sortBy: string,
   sortOrder: string,
+  sortBy: string,
   sortName: string.isRequired,
   handleSort: func,
   defaultSortOrder: string,
@@ -15,52 +16,34 @@ const propTypes = {
 
 const defaultProps = {
   className: '',
-  sortBy: null,
   sortOrder: null,
+  sortBy: null,
   defaultSortOrder: 'desc',
 };
 
-const THeadCellWithSoring = ({
-  label,
-  className,
-  sortBy,
-  sortOrder,
-  sortName,
-  handleSort,
-  defaultSortOrder,
-  children,
-  ...rest
-}) => {
+const THeadCellWithSoring = props => {
+  const { label, className, sortOrder, sortBy, sortName, handleSort, defaultSortOrder, children, ...rest } = props;
   const isSorting = sortName === sortBy;
+  const asc = sortOrder === 'asc';
+  const desc = sortOrder === 'desc';
   const classes = cn('table-cell sorting', {
     [className]: className,
   });
 
   const iconClasses = cn('sort_icon', {
     sortByCurrent: isSorting,
-    asc: sortOrder === 'asc',
-    desc: sortOrder === 'desc',
+    [sortOrder]: sortOrder,
   });
 
-  const onSort = () => {
-    let by;
-    if (isSorting) {
-      if (sortOrder === 'asc') {
-        by = 'desc';
-      } else {
-        by = 'asc';
-      }
-    } else if (defaultSortOrder) {
-      by = defaultSortOrder;
-    } else {
-      by = 'asc';
-    }
+  const by = useMemo(() => getSortBy(isSorting, asc, defaultSortOrder), [isSorting, asc, defaultSortOrder]);
+
+  const onSort = useCallback(() => {
     handleSort(sortName, by);
-  };
+  }, [handleSort, sortName, by]);
   return (
-    <th {...rest} className={classes} onClick={() => onSort()}>
+    <th {...rest} className={classes} onClick={onSort}>
       {label}
-      <span className={iconClasses}>{sortOrder === 'desc' ? '\\/' : '/\\'}</span>
+      <span className={iconClasses}>{desc ? '\\/' : '/\\'}</span>
       {children}
     </th>
   );
@@ -69,4 +52,4 @@ const THeadCellWithSoring = ({
 THeadCellWithSoring.propTypes = propTypes;
 THeadCellWithSoring.defaultProps = defaultProps;
 
-export default THeadCellWithSoring;
+export default memo(THeadCellWithSoring);

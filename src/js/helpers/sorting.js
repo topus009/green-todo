@@ -19,3 +19,19 @@ export const sortIds = (ids, objectWithItems, sortBy, sortOrder, sortingRules) =
   }
   return sorted;
 };
+
+export const getSortBy = (isSorting, asc, defaultSortOrder) => {
+  let by;
+  if (isSorting) {
+    if (asc) {
+      by = 'desc';
+    } else {
+      by = 'asc';
+    }
+  } else if (defaultSortOrder) {
+    by = defaultSortOrder;
+  } else {
+    by = 'asc';
+  }
+  return by;
+};

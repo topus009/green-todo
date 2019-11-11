@@ -114,25 +114,16 @@ const Todos = ({ todos, loading, getTodos, changeTodoTitle, toggleTodoCompleted 
               <th>
                 <input type="checkbox" onChange={handleSelectAll} checked={selectedAll} />
               </th>
-              {renderChildrenWithProps(
-                [
-                  <THeadCellWithSoring label="№" sortName="ID" />,
-                  <THeadCellWithSoring label="Название" sortName="Title" />,
-                  <THeadCellWithSoring label="Время" sortName="DueDate" />,
-                  <THeadCellWithSoring label="Статус" sortName="Completed" className="todo_header_status">
-                    {selectedItems.length ? (
-                      <button
-                        type="button"
-                        onClick={handleToggleSelectedTodoCompleted}
-                        disabled={!selectedItems.length}
-                      >
-                        Изменить
-                      </button>
-                    ) : null}
-                  </THeadCellWithSoring>,
-                ],
-                sortingProps
-              )}
+              <THeadCellWithSoring label="№" sortName="ID" {...sortingProps} />
+              <THeadCellWithSoring label="Название" sortName="Title" {...sortingProps} />
+              <THeadCellWithSoring label="Время" sortName="DueDate" {...sortingProps} />
+              <THeadCellWithSoring label="Статус" sortName="Completed" className="todo_header_status" {...sortingProps}>
+                {selectedItems.length ? (
+                  <button type="button" onClick={handleToggleSelectedTodoCompleted} disabled={!selectedItems.length}>
+                    Изменить
+                  </button>
+                ) : null}
+              </THeadCellWithSoring>
             </tr>
           </thead>
           <tbody>
